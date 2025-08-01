@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Rogahn, Dibbert and Runolfsdottir",
+    "code": "EH",
+    "activeUsers": 16,
+    "id": "1"
+  },
+  {
+    "name": "Reichel Inc",
+    "code": "ER",
+    "activeUsers": 43,
+    "license": {
+      "type": "DEVELOPMENT",
+      "companyName": "Development Tester 50",
+      "expiredAt": "2025-03-23T00:00:00Z",
+      "contractStartAt": null,
+      "maxUsers": 50,
+      "features": [
+        "V-KEY-TOTP"
+      ]
+    },
+    "id": "2"
+  },
+  {
+    "name": "Reynolds, Koepp and Kuphal",
+    "code": "IT",
+    "activeUsers": 94,
+    "license": {
+      "type": "DEVELOPMENT",
+      "companyName": "Development Tester 50",
+      "expiredAt": "2025-03-23T00:00:00Z",
+      "contractStartAt": null,
+      "maxUsers": 200,
+      "features": [
+        "V-KEY-TOTP"
+      ]
+    },
+    "id": "3"
+  },
+  {
+    "name": "Emard, Wintheiser and Bosco",
+    "code": "SB",
+    "activeUsers": 2,
+    "license": {
+      "type": "DEVELOPMENT",
+      "companyName": "Development Tester 50",
+      "expiredAt": "2025-03-23T00:00:00Z",
+      "contractStartAt": null,
+      "maxUsers": 100,
+      "features": [
+        "V-KEY-TOTP"
+      ]
+    },
+    "id": "4"
+  },
+  {
+    "name": "Dickens, Hintz and Renner",
+    "code": "BQ",
+    "activeUsers": 69,
+    "id": "5"
+  },
+  {
+    "name": "Lang - Daniel",
+    "code": "GP",
+    "activeUsers": 60,
+    "id": "6"
+  },
+  {
+    "name": "Hyatt Inc",
+    "code": "US",
+    "activeUsers": 83,
+    "id": "7"
+  },
+  {
+    "name": "Mitchell, Goodwin and Krajcik",
+    "code": "SR",
+    "activeUsers": 18,
+    "id": "8"
+  },
+  {
+    "name": "Muller LLC",
+    "code": "SK",
+    "activeUsers": 10,
+    "id": "9"
+  }
+]
