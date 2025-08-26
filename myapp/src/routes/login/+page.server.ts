@@ -1,10 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ cookies }) => {
-    if (cookies.get('token')) throw redirect(302, '/');
-};
-
 export const actions: Actions = {
     auth: async ({ request, cookies }) => {
         const form = await request.formData();
@@ -19,22 +15,16 @@ export const actions: Actions = {
 
         if (!res.ok) {
             const errorData = await res.json();
-            return { error: errorData.error};
+            return { error: errorData.error };
         }
-        const { token, refresh_token } = await res.json();
-        cookies.set('token', token, {
-            path: '/',
-            httpOnly: true,
-            sameSite: 'strict',
-            maxAge: 60*15
-        });
-        // localStorage.setItem('refresh_token', refresh_token);
-        cookies.set('refresh_token', refresh_token, {
+
+        cookies.set('email', email, {
             path: '/',
             httpOnly: true,
             sameSite: 'strict',
             maxAge: 60 * 60 * 24
         });
-        throw redirect(303, '/');
+
+        throw redirect(303, '/otp');
     }
 };

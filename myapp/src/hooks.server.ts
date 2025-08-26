@@ -15,7 +15,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 				path: '/',
 				httpOnly: true,
 				sameSite: 'strict',
-				maxAge: 60 * 1
+				maxAge: 60 * 5
 			});
 			console.log({refreshToken})
 		console.log({token})

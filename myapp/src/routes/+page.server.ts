@@ -1,4 +1,3 @@
-import { time } from 'console';
 import type { PageServerLoad, Actions } from './$types';
 import { redirect } from '@sveltejs/kit';
 
@@ -9,7 +8,6 @@ export const load: PageServerLoad = async ({ cookies, url, fetch }) => {
 	if (!token && !publicRoutes.includes(url.pathname)) {
 		throw redirect(302, '/login');
 	}
-	// const res = await fetch('https://6809b0fb1f1a52874cdd7193.mockapi.io/data');
 	const res = await fetch('http://localhost:8080/companies', {
         headers: {
             Authorization: `Bearer ${token}`,

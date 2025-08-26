@@ -28,7 +28,8 @@
 
 <style>
 	:global(body) {
-		background-color: #e4e7f2;
+		/* background-color: #e4e7f2; */
+		background-image: linear-gradient(#112c53, #131927);
 		margin: 0;
 		display: flex;
 		justify-content: center;

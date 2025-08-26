@@ -1,5 +1,5 @@
 <script>
-	import logo from '/Users/pitchaya/1/myapp/src/image/logo.png';
+	import logo from '../../../../image/logo.png';
 	let { data } = $props();
 	let menuItems = [
 		{ name: 'Company', icon: 'fa-building' },

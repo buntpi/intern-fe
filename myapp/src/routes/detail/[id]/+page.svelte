@@ -1,11 +1,11 @@
 <script>
-	import logo from '/Users/pitchaya/1/myapp/src/image/logo.png';
+	import logo from '../../../image/logo.png';
 	let { data } = $props();
 	let menuItems = [
-		{ name: 'Company', icon: 'fa-building' },
-		{ name: 'Super admin', icon: 'fa-user' },
-		{ name: 'Setting', icon: 'fa-gear' },
-		{ name: 'Activity log', icon: 'fa-file-lines' }
+		{ name: 'Company', icon: 'fa-building', link: '/' },
+		{ name: 'Super admin', icon: 'fa-user', link: '/' },
+		{ name: 'Setting', icon: 'fa-gear', link: '/' },
+		{ name: 'Activity log', icon: 'fa-file-lines', link: '/' }
 	];
 </script>
 
@@ -19,8 +19,10 @@
 		<ul class="menu-container">
 			{#each menuItems as item}
 				<li class="menu-item">
-					<i class="fa-solid {item.icon}"></i>
-					<p>{item.name}</p>
+					<a href={item.link}>
+						<i class="fa-solid {item.icon}"></i>
+						<p>{item.name}</p>
+					</a>
 				</li>
 			{/each}
 		</ul>
@@ -111,6 +113,15 @@
 					p {
 						font-size: 14px;
 						padding-top: 10px;
+					}
+					a {
+						display: flex;
+						align-items: center;
+						gap: 24px;
+						padding: 4px 8px 4px 8px;
+						width: 100%;
+						color: white;
+						border-radius: 5px;
 					}
 				}
 				.menu-item:hover {
