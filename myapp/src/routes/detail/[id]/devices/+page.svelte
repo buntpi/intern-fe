@@ -1,12 +1,10 @@
 <script>
-	let otp = $state('');
-	// let { form, data } = $props();
-	let { form } = $props();
+	let { data } = $props();
 
 </script>
 
 <div class="container">
-<!-- {#if !data.scanned}
+{#if !data.scanned}
 	<h1>Scan this QR with Authenticator</h1>
 	<img src={data.qrSrc} alt="QR Code" />
 	<br />
@@ -15,23 +13,9 @@
 			Already Scanned
 		</button>
 	</form>
-{:else} -->
-	<form method="POST" action="?/verifyotp">
-		<h1>Enter OTP</h1>
-		<input
-			class="box"
-			name="otp"
-			bind:value={otp}
-			placeholder="One Time Password"
-			required
-		/>
-		<button type="submit" class="button">Login</button>
-	</form>
-
-	{#if form?.error}
-		<p style="color:red">{form.error}</p>
-	{/if}
-<!-- {/if} -->
+{:else}
+	already scanned
+{/if}
 </div>
 
 <style>
@@ -72,15 +56,6 @@
 	}
 	.button:hover {
 		background-color: #131927;
-	}
-	.box {
-		display: flex;
-		flex-direction: column;
-		border: 1px solid #a7afb7;
-		border-radius: 5px;
-		height: 38px;
-		margin: 10px 0px;
-		width: 100%;
 	}
 	h1{
 		margin:0;

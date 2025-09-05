@@ -1,12 +1,36 @@
-<script>
+<script lang="ts">
 	import logo from '../../../../image/logo.png';
 	let { data } = $props();
 	let menuItems = [
-		{ name: 'Company', icon: 'fa-building' },
-		{ name: 'Super admin', icon: 'fa-user' },
-		{ name: 'Setting', icon: 'fa-gear' },
-		{ name: 'Activity log', icon: 'fa-file-lines' }
+		{ name: 'Company', icon: 'fa-building', link: '/' },
+		{ name: 'Super admin', icon: 'fa-user', link: '/superadmin' },
+		{ name: 'Setting', icon: 'fa-gear', link: '/' },
+		{ name: 'Activity log', icon: 'fa-file-lines', link: '/' }
 	];
+	interface License {
+		Type: String;
+		CompanyName: String;
+		ExpiredAt: Date;
+		ContractStartAt: Date;
+		MaxUsers: Number;
+		Features: Array<String>;
+	}
+	import { enhance } from '$app/forms';
+	let Type = $state('');
+	let CompanyName = $state('');
+	let ExpiredAt = $state(new Date(''));
+	let ContractStartAt = $state(new Date(''));
+	let MaxUsers = $state('');
+	let Features = $state(['']);
+	let licenses: License;
+	function closecreateLicense() {
+		Type = '';
+		CompanyName = '';
+		ExpiredAt = new Date('');
+		ContractStartAt = new Date('');
+		MaxUsers = '';
+		Features = [''];
+	}
 </script>
 
 <div class="header"></div>
@@ -18,16 +42,22 @@
 		<div class="description">Company management</div>
 		<ul class="menu-container">
 			{#each menuItems as item}
-				<li class="menu-item">
-					<i class="fa-solid {item.icon}"></i>
-					<p>{item.name}</p>
-				</li>
+				<a href={item.link}>
+					<li class="menu-item">
+						<i class="fa-solid {item.icon}"></i>
+						<p>{item.name}</p>
+					</li>
+				</a>
 			{/each}
 		</ul>
 	</div>
 	<div class="sidebar-footer">V1.14</div>
 </div>
 <div class="container">
+	<button class="create-btn" data-toggle="modal" data-target="#myModal" data-testid="create-button"
+		><i class="fa-solid fa-square-plus"></i> Create license</button
+	>
+	<a href="/" data-testid="list-button"><button>company list</button></a>
 	{#each data.licenses as license}
 		<div>license</div>
 		<ul>
@@ -39,7 +69,91 @@
 			<li>features:{license.Features}</li>
 		</ul>
 	{/each}
-	<a href="/" data-testid="list-button"><button>company list</button></a>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick={closecreateLicense}
+					>&times;</button
+				>
+				<div class="modal-title">Create company</div>
+			</div>
+			<form
+				method="POST"
+				action="?/createLicense"
+				use:enhance={() => {
+					(globalThis as any).$('#myModal').modal('hide');
+					licenses = {
+						Type: '',
+						CompanyName: '',
+						ExpiredAt: new Date(),
+						ContractStartAt: new Date(),
+						MaxUsers: 0,
+						Features: ['']
+					};
+				}}
+			>
+				<div class="modal-input-all row modal-body">
+					<input class="modal-input" name="type" type="text" placeholder="Type" bind:value={Type} />
+					<input
+						class="modal-input"
+						name="companyName"
+						type="text"
+						placeholder="CompanyName"
+						bind:value={CompanyName}
+					/>
+					<input
+						class="modal-input"
+						name="expiredAt"
+						type="date"
+						placeholder="ExpiredAt"
+						bind:value={ExpiredAt}
+					/>
+					<input
+						class="modal-input"
+						name="contractStartAt"
+						type="date"
+						placeholder="ContractStartAt"
+						bind:value={ContractStartAt}
+					/>
+					<input
+						class="modal-input"
+						name="maxUsers"
+						type="number"
+						min="0"
+						placeholder="MaxUsers"
+						bind:value={MaxUsers}
+					/>
+					<input
+						class="modal-input"
+						name="features"
+						type="text"
+						placeholder="Features"
+						bind:value={Features}
+					/>
+				</div>
+
+				<div class="modal-footer">
+					<button
+						type="submit"
+						class="crt btn btn-default"
+						data-testid="modal-create"
+						disabled={!(CompanyName && ExpiredAt && ContractStartAt && MaxUsers && Features)}
+					>
+						Create
+					</button>
+					<button
+						type="button"
+						class="cls btn btn-default"
+						data-dismiss="modal"
+						data-testid="modal-close"
+						onclick={closecreateLicense}>Close</button
+					>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 
 <style>
@@ -83,6 +197,9 @@
 				gap: 14px;
 				display: grid;
 				margin: 0;
+				a:hover {
+					text-decoration: none;
+				}
 				.menu-item {
 					height: 38px;
 					padding: 4px 8px 4px 8px;

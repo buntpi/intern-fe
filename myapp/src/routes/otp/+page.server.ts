@@ -1,20 +1,20 @@
 import type { Actions, PageServerLoad } from './$types';
 import { redirect, fail } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ cookies }) => {
+// export const load: PageServerLoad = async ({ cookies }) => {
 	
-	// const token = cookies.get('token');
-	// if (!token) throw redirect(302, '/login');
+// 	// const token = cookies.get('token');
+// 	// if (!token) throw redirect(302, '/login');
 
-	const email = cookies.get('email');
-	if (!email) throw redirect(302, '/login');
+// 	const email = cookies.get('email');
+// 	if (!email) throw redirect(302, '/login');
 
-	const res = await fetch(`http://localhost:8080/isscan?email=${email}`);
-    const user = await res.json();
+// 	const res = await fetch(`http://localhost:8080/isscan?email=${email}`);
+//     const user = await res.json();
 
-	const qrSrc = `http://localhost:8080/qr?email=${email}`;
-	return { email, qrSrc, scanned: user.scanned };
-};
+// 	const qrSrc = `http://localhost:8080/qr?email=${email}`;
+// 	return { email, qrSrc, scanned: user.scanned };
+// };
 
 export const actions: Actions = {
 	verifyotp: async ({ request, cookies, fetch }) => {
@@ -51,18 +51,18 @@ export const actions: Actions = {
 
 		throw redirect(303, '/');
 	},
-    scanned: async ({ cookies, fetch }) => {
-		const email = cookies.get('email');
-		if (!email) throw redirect(302, '/login');
+    // scanned: async ({ cookies, fetch }) => {
+	// 	const email = cookies.get('email');
+	// 	if (!email) throw redirect(302, '/login');
 
-		const res = await fetch(`http://localhost:8080/scanned`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ email })
-		});
-		if (!res.ok) {
-			return { error: 'Failed to update scanned state' };
-		}
-		throw redirect(303, '/otp');
-	}
+	// 	const res = await fetch(`http://localhost:8080/scanned`, {
+	// 		method: 'POST',
+	// 		headers: { 'Content-Type': 'application/json' },
+	// 		body: JSON.stringify({ email })
+	// 	});
+	// 	if (!res.ok) {
+	// 		return { error: 'Failed to update scanned state' };
+	// 	}
+	// 	throw redirect(303, '/otp');
+	// }
 };

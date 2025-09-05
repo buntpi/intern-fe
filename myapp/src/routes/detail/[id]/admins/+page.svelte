@@ -30,11 +30,21 @@
 	<div class="sidebar-footer">V1.14</div>
 </div>
 <div class="container">
-	{#each data.applications as application}
-		<div>application</div>
-		<div>name:{application.ApplicationName}</div>
+	<form method="POST" action="?/createdevice">
+		<button type="submit" class="button">Add device</button>
+	</form>
+	{#each data.admins as device}
+		<ul>
+			<a href="/detail/{device.ID}/devices">
+			{device.Scanned}
+			{device.TOTPSecret}
+		</a>
+		<form method="POST" action="?/deletedevice">
+			<input type="hidden" name="deviceID" value={device.ID} />
+			<button type="submit" class="button">Delete device</button>
+		</form>
+		</ul>
 	{/each}
-	<a href="/" data-testid="list-button"><button>company list</button></a>
 </div>
 
 <style>

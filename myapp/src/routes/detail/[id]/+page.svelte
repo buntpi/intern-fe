@@ -3,7 +3,7 @@
 	let { data } = $props();
 	let menuItems = [
 		{ name: 'Company', icon: 'fa-building', link: '/' },
-		{ name: 'Super admin', icon: 'fa-user', link: '/' },
+		{ name: 'Super admin', icon: 'fa-user', link: '/superadmin' },
 		{ name: 'Setting', icon: 'fa-gear', link: '/' },
 		{ name: 'Activity log', icon: 'fa-file-lines', link: '/' }
 	];
@@ -18,12 +18,12 @@
 		<div class="description">Company management</div>
 		<ul class="menu-container">
 			{#each menuItems as item}
-				<li class="menu-item">
-					<a href={item.link}>
+				<a href={item.link}>
+					<li class="menu-item">
 						<i class="fa-solid {item.icon}"></i>
 						<p>{item.name}</p>
-					</a>
-				</li>
+					</li>
+				</a>
 			{/each}
 		</ul>
 	</div>
@@ -96,6 +96,9 @@
 				gap: 14px;
 				display: grid;
 				margin: 0;
+				a:hover {
+					text-decoration: none;
+				}
 				.menu-item {
 					height: 38px;
 					padding: 4px 8px 4px 8px;
@@ -113,15 +116,6 @@
 					p {
 						font-size: 14px;
 						padding-top: 10px;
-					}
-					a {
-						display: flex;
-						align-items: center;
-						gap: 24px;
-						padding: 4px 8px 4px 8px;
-						width: 100%;
-						color: white;
-						border-radius: 5px;
 					}
 				}
 				.menu-item:hover {

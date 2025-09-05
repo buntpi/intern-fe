@@ -1,10 +1,10 @@
 <script lang="ts">
 	import logo from '../image/logo.png';
 	let menuItems = [
-		{ name: 'Company', icon: 'fa-building' },
-		{ name: 'Super admin', icon: 'fa-user' },
-		{ name: 'Setting', icon: 'fa-gear' },
-		{ name: 'Activity log', icon: 'fa-file-lines' }
+		{ name: 'Company', icon: 'fa-building', link: '/' },
+		{ name: 'Super admin', icon: 'fa-user', link: '/superadmin' },
+		{ name: 'Setting', icon: 'fa-gear', link: '/' },
+		{ name: 'Activity log', icon: 'fa-file-lines', link: '/' }
 	];
 	interface License {
 		Type: String;
@@ -70,10 +70,12 @@
 		<div class="description">Company management</div>
 		<ul class="menu-container">
 			{#each menuItems as item}
-				<li class="menu-item">
-					<i class="fa-solid {item.icon}"></i>
-					<p>{item.name}</p>
-				</li>
+				<a href={item.link}>
+					<li class="menu-item">
+						<i class="fa-solid {item.icon}"></i>
+						<p>{item.name}</p>
+					</li>
+				</a>
 			{/each}
 		</ul>
 	</div>
@@ -378,6 +380,9 @@
 				gap: 14px;
 				display: grid;
 				margin: 0;
+				a:hover {
+					text-decoration: none;
+				}
 				.menu-item {
 					height: 38px;
 					padding: 4px 8px 4px 8px;
