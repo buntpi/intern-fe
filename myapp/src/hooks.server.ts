@@ -17,13 +17,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 				sameSite: 'strict',
 				maxAge: 60 * 5
 			});
-			console.log({refreshToken})
-		console.log({token})
 		}
-		// console.log("rtplkjhgfdfghj")
+		
 	}
-	// if (token) {
-	// 	event.request.headers.set('Authorization', `Bearer ${token}`);
-	// }
 	return resolve(event);
 };
